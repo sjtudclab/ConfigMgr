@@ -1,0 +1,21 @@
+{
+  "name": "ConfigMgr",
+  "version": "0.0.1",
+  "authors": [
+    "Yongfeng <kymtwyf@gmail.com>"
+  ],
+  "description": "Configuration management for community server",
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/components"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}

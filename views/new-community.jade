@@ -1,0 +1,31 @@
+extends layout
+block css
+    link(rel='stylesheet' href='/stylesheets/city.css')
+
+block content
+    h1= title
+
+    #step-1.panel.panel-default
+        .panel-heading
+            .panel-title 地址
+        .panel-body
+            form.form-inline
+                div(data-toggle="distpicker")
+                    select#province-selector.form-control
+                    select#city-selector.form-control
+                    select#area-selector.form-control
+                .input-wrapper
+                    input(type="text" name="community-name" placeholder="小区名").form-control
+    #step-2.panel.panel.panel-default
+        .panel-heading
+            #community-address.panel-title
+        .panel-body
+
+    #btn-prev.btn.btn-primary.btn-lg(style="position:absolute; bottom:100px; left:50px") 上一步
+
+    #btn-next.btn.btn-primary.btn-lg(style="position:absolute; bottom:100px; right:50px") 下一步
+        i.glyphicon.glyphicon-chevron-right
+
+block js
+    script(src='/components/distpicker/dist/distpicker.data.min.js')
+    script(src='/components/distpicker/dist/distpicker.min.js')
