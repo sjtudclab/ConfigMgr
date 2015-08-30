@@ -1,0 +1,11 @@
+{
+    "mysql": {
+         "host": "localhost",
+         "user": "root",
+         "password": "",
+         "port": "3306",
+         "database": "community_server",
+         "fixeddb": "server"
+    },
+    "initial_sql": "./models/community_server_2015-08-30.sql"
+}

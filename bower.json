@@ -16,6 +16,7 @@
     "public/components"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "distpicker": "~1.0.0"
   }
 }

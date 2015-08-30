@@ -8,5 +8,10 @@
   "undef":     true,
   "unused":    true,
   "onecase":   true,
-  "lastsemic": true
+  "lastsemic": true,
+  "globals": {
+    "$": false,
+    "jQuery": false,
+    "alert": false
+  }
 }

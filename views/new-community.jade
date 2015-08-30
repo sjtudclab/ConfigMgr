@@ -1,9 +1,42 @@
 extends layout
 block css
-    link(rel='stylesheet' href='/stylesheets/city.css')
 
 block content
     h1= title
+
+    #step-0.panel.panel-default
+        .panel-heading
+            .panel-title 指定数据库
+        .panel-body
+            .radio
+                label
+                    input(type="radio" name="custom-db" id="default-db" value="no" checked) 
+                    |默认数据库
+            .radio
+                label
+                    input(type="radio" name="custom-db" id="custom-db" value="yes") 
+                    |自定义数据库
+            #form-custom-db.form.form-horizontal
+                .form-group
+                    label.col-sm-2.control-label(for="db-host") 主机地址
+                    .col-sm-10
+                        input#db-host(type="text" value="localhost").form-control
+                .form-group
+                    label.col-sm-2.control-label(for="db-port") 端口
+                    .col-sm-10
+                        input#db-port(type="text" placeholder="3306" value="3306").form-control
+                .form-group
+                    label.col-sm-2.control-label(for="db-user") 用户名
+                    .col-sm-10
+                        input#db-user(type="text" value="root").form-control
+                .form-group
+                    label.col-sm-2.control-label(for="db-password") 密码
+                    .col-sm-10
+                        input#db-password(type="text" value="").form-control
+                .form-group
+                    label.col-sm-2.control-label(for="db-name" value="testdb") 数据库名
+                    .col-sm-10
+                        input#db-name(type="text" value="community_server").form-control
 
     #step-1.panel.panel-default
         .panel-heading
@@ -16,14 +49,21 @@ block content
                     select#area-selector.form-control
                 .input-wrapper
                     input(type="text" name="community-name" placeholder="小区名").form-control
+            form.form-horizontal
+                .form-group
+                    label.col-md-2.control-label(for="address") 详细地址
+                    .col-md-10
+                        input#address(type="text").form-control
     #step-2.panel.panel.panel-default
         .panel-heading
             #community-address.panel-title
-        .panel-body
+            |其他基本信息
+        .panel-body 
+            div                无
 
-    #btn-prev.btn.btn-primary.btn-lg(style="position:absolute; bottom:100px; left:50px") 上一步
 
-    #btn-next.btn.btn-primary.btn-lg(style="position:absolute; bottom:100px; right:50px") 下一步
+
+    #btn-submit-new.btn.btn-default.btn-lg.pull-right 提交
         i.glyphicon.glyphicon-chevron-right
 
 block js
