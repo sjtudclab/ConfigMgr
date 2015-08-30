@@ -67,7 +67,9 @@
             console.log(data);
             if (data.status === 'success') {
                 //TODO 改了
-                Redirect('/');
+                $('#success-alert').removeClass('hidden');
+            } else {
+                alert('ERROR');
             }
         });
     });

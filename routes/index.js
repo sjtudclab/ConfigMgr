@@ -1,4 +1,5 @@
 var express = require('express');
+var util = require('util');
 var router = express.Router();
 var sqlHelper = require('../service/sqlHelper');
 var dao = require('../service/dao');
@@ -48,5 +49,26 @@ router.post('/new', function(req, res, next) {
     });
 
 });
-
+router.get('/manage/:id', function(req, res, next) {
+    console.log('[manage detail]' + req.params.id);
+    res.render('manage_detail', {
+        title: '详细设置'
+    });
+});
+router.get('/manage', function(req, res, next) {
+    dao.getCommunities().then(function(result) {
+        if (result.status === 'success') {
+            console.log(util.inspect(result));
+            res.render('manage', {
+                title: '管理社区',
+                communities: result.detail
+            });
+        } else {
+            console.log(util.inspect(result));
+            res.render('manage', {
+                title: '管理社区'
+            });
+        }
+    });
+});
 module.exports = router;

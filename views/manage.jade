@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1= title
+    #community-list
+        each val in communities.length ? communities : []
+            +blockCommunity(val)
+
+block js
+    script(src='/javascripts/manage.js')
+
+mixin blockCommunity(community)
+    .panel.panel-default(href='/manage/' + community.community_id)
+        .panel-heading= community.province_city_area + '_' + community.name
+            .hidden.community-id= community.community_id
+        .panel-body= community.address
+

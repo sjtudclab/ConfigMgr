@@ -45,3 +45,39 @@ exports.createNewCommunity = function(host, username, password, port, db,
 
     return ret.promise;
 };
+
+exports.getCommunities = function() {
+    var ret = Promise.pending();
+    var newHost = config.get('host');
+    var newUser = config.get('user');
+    var newPassword = config.get('password');
+    var newPort = config.get('port');
+    var newDatabase = config.get('fixeddb');
+    var connection = mysql.createConnection({
+        host: newHost,
+        user: newUser,
+        password: newPassword,
+        port: newPort,
+        database: newDatabase
+    });
+
+    connection.query('SELECT `community_id`,`name`,`province_city_area` ' +
+        ',`address`  FROM `community`',
+        function(err, results) {
+            if (err) {
+                ret.resolve({
+                    status: 'error',
+                    message: '查找社区错误',
+                    detail: err
+                });
+            } else {
+                ret.resolve({
+                    status: 'success',
+                    message: '查找社区成功',
+                    detail: results
+                });
+            }
+        });
+
+    return ret.promise;
+};

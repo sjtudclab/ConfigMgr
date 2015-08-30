@@ -3,7 +3,9 @@ block css
 
 block content
     h1= title
-
+    #success-alert.alert.alert-success.hidden(role='alert')
+        strong 创建成功！
+        a.alert-link(href='/') 点击这里进行管理
     #step-0.panel.panel-default
         .panel-heading
             .panel-title 指定数据库
