@@ -66,7 +66,8 @@ router.get('/manage', function(req, res, next) {
         } else {
             console.log(util.inspect(result));
             res.render('manage', {
-                title: '管理社区'
+                title: '管理社区',
+                communities: []
             });
         }
     });

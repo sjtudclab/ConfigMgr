@@ -62,7 +62,7 @@ exports.getCommunities = function() {
     });
 
     connection.query('SELECT `community_id`,`name`,`province_city_area` ' +
-        ',`address`  FROM `community`',
+        ',`address`  FROM `community` ORDER BY `community_id` DESC',
         function(err, results) {
             if (err) {
                 ret.resolve({
