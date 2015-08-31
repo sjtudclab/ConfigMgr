@@ -14,9 +14,13 @@ body {
     display:inline;
 }
 
-#step-0 .panel-body .radio {
+/*#step-0 .panel-body .radio {
     display: inline;
     padding-left: 20px;
+}*/
+label.radio {
+	display:inline;
+	margin-left: 50px;
 }
 
 #form-custom-db {

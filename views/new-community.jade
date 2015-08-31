@@ -10,14 +10,18 @@ block content
         .panel-heading
             .panel-title 指定数据库
         .panel-body
-            .radio
-                label
-                    input(type="radio" name="custom-db" id="default-db" value="no" checked) 
-                    |默认数据库
-            .radio
-                label
-                    input(type="radio" name="custom-db" id="custom-db" value="yes") 
-                    |自定义数据库
+            label.radio
+                input.custom-radio(type="radio" name="custom-db" id="default-db" value="no" data-toggle='radio' checked) 
+                span.icons
+                    span.icon-unchecked
+                    span.icon-checked
+                |默认数据库
+            label.radio
+                input.custom-radio(type="radio" name="custom-db" id="custom-db" value="no" data-toggle='radio') 
+                span.icons
+                    span.icon-unchecked
+                    span.icon-checked
+                |自定义数据库                
             #form-custom-db.form.form-horizontal
                 .form-group
                     label.col-sm-2.control-label(for="db-host") 主机地址
@@ -65,7 +69,7 @@ block content
 
 
 
-    #btn-submit-new.btn.btn-default.btn-lg.pull-right 提交
+    a#btn-submit-new.btn.btn-primary.btn-lg.pull-right 提交
         i.glyphicon.glyphicon-chevron-right
 
 block js
