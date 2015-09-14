@@ -6,8 +6,14 @@ var dao = require('../service/dao');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    console.log('[visiting homepage----------------]');
     res.render('index',
-      {title: '社区基础数据管理系统'}
+        {
+            title: '社区基础数据管理d系统',
+            user: {
+                name: 'Wu Yongfeng'
+            }
+        }
     );
 });
 

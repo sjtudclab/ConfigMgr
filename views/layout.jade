@@ -8,8 +8,16 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
         block css
     body
-        #body-container.container
-            block content
+        #navbar.navbar.navbar-inverse.navbar-fixed-top
+            a.navbar-brand(href='/') 社区基础数据管理系统
+            if user
+                a.navbar-text.navbar-right= '欢迎您，' + user.name
+
+        #body-container.row
+            #left-nav.col-md-1
+                a.btn.btn-large.btn-inverse 社区定义元数据 
+            .col-md-11
+                block content
         .cover
 
 

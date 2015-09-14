@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "pm2 start ./bin/pm2.json",
+    "start": "pm2 start ./bin/pm2.json && pm2 logs",
     "setup": "mkdir -p ./.pm2/logs ./.pm2/pids && chmod a+w ./.pm2/*",
     "stop": "pm2 flush && pm2 kill"
   },
