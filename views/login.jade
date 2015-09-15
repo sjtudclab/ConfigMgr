@@ -1,0 +1,15 @@
+extends layout_with_nav
+
+block css
+    link(rel='stylesheet', href='/stylesheets/login.css')
+block belowContent
+    .row(style='margin-top:200px;')
+        .col-md-offset-5.col-md-3
+            .form-login
+                h4 登录
+                input#username.form-control.input-sm.chat-input.mbl(type='text',placeholder='username')
+                input#password.form-control.input-sm.chat-input.mbl(type='password',placeholder='password')
+                .wrapper
+                    span.group-btn
+                        a.btn.btn-primary.btn-md(href='/') Login
+                            i.fa.fa-sign-in

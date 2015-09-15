@@ -12,3 +12,5 @@ CREATE TABLE IF NOT EXISTS `community` (
   `db_name` varchar(128) NOT NULL,
   PRIMARY KEY (`community_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+

@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.5",
+    "components-font-awesome": "~4.4.0",
     "distpicker": "~1.0.0",
     "flat-ui": "~2.2.2"
   }

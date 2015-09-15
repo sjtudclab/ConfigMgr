@@ -5,10 +5,4 @@ block content
         if user
             a.navbar-text.navbar-right= '欢迎您，' + user.name
 
-    #body-container.row
-        #left-nav.col-md-2.col-xs-2
-            a.btn.btn-large.btn-inverse 社区定义元数据 
-            a#copyright  ©2015 DC LAB SJTU
-
-        .col-md-10.col-sx-10
-            block rightContent
+    block belowContent

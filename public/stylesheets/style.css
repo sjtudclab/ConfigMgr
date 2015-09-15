@@ -56,5 +56,17 @@ label.radio {
 }
 
 #left-nav {	
+	padding:0;
 	background-color: #34495e;
+	text-align: center;
+
+	position: relative;
+}
+#left-nav a {
+	width: 100%;
+}
+#copyright {
+	position: absolute;
+	bottom:0px;
+	left:0px;
 }
