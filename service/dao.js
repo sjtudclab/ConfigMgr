@@ -1,6 +1,15 @@
 var config = require('config').get('mysql');
 var mysql = require('mysql');
 var Promise = require('bluebird');
+var knex = require('knex')({
+    client: 'mysql',
+    connection: {
+        host: config.get('host'),
+        user: config.get('user'),
+        password: config.get('password'),
+        database: config.get('meta_database')
+    }
+});
 
 exports.createNewCommunity = function(host, username, password, port, db,
                                     name, provinceCityArea, address) {
@@ -80,4 +89,9 @@ exports.getCommunities = function() {
         });
 
     return ret.promise;
+};
+
+exports.getEntities = function() {
+    var entityTable = config.get('table_entity');
+    return knex.select('*').from(entityTable);
 };

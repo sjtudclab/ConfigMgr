@@ -82,5 +82,10 @@
         $('#form-custom-db').slideDown();
     });
 
+    //导航栏效果
+    $('#left-nav > a').on('click', function(event) {
+        $(event.target).next().slideToggle('slow');
+        // $(event.target).toggleClass('open');
+    });
 })(jQuery);
 

@@ -1,0 +1,43 @@
+extends layout
+
+block rightContent
+    .container
+        button#btn-new-entity.btn.btn-default.btn-lg 新建实体
+            .glyphicon.glyphicon-plus
+
+    #entity-list.panel.panel-default.row
+        each entity in entities
+            div.col-md-3.entity-item
+                h4= entity.name
+                div= entity.description
+
+
+    <!-- Modal-->
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4#myModalLabel.modal-title 新建实体
+                .modal-body
+                    form.form-horizontal
+                        .form-group
+                            label.col-md-3.control-label(for='entity-name')
+                            .col-md-9
+                                input#entity-name.form-control(placeholder='实体名')
+                        .form-group
+                            label.col-md-3.control-label(for='table_name')
+                            .col-md-9
+                                input#table-name.form-control(placeholder='数据库名')
+                        .form-group
+                            label.col-md-3.control-label(for='description')
+                            .col-md-9
+                                textarea#table-desc.form-control(placeholder='描述', rows=3)
+
+                .modal-footer
+                    button.btn.btn-default(type='button', data-dismiss='modal') Close
+                    button#btn-submit-new-entity.btn.btn-primary(type='button') Submit
+
+block js
+    script(src='/javascripts/new_entity.js')

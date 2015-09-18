@@ -7,9 +7,11 @@ block belowContent
         .col-md-offset-5.col-md-3
             .form-login
                 h4 登录
-                input#username.form-control.input-sm.chat-input.mbl(type='text',placeholder='username')
-                input#password.form-control.input-sm.chat-input.mbl(type='password',placeholder='password')
+                input#username.form-control.input-sm.chat-input.mbl(type='text',placeholder='用户名')
+                input#password.form-control.input-sm.chat-input.mbl(type='password',placeholder='密码')
                 .wrapper
                     span.group-btn
-                        a.btn.btn-primary.btn-md(href='/') Login
+                        a#btn-login.btn.btn-primary.btn-md(href='/') 登录
                             i.fa.fa-sign-in
+block js
+    script(src='/javascripts/login.js')

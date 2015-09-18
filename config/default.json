@@ -5,7 +5,10 @@
          "password": "",
          "port": "3306",
          "database": "community_server",
-         "fixeddb": "server"
+         "meta_database": "MetaManager",
+         "fixeddb": "server",
+         "table_entity": "meta_entity",
+         "table_property": "meta_property"
     },
     "initial_sql": "./models/community_server_2015-08-30.sql"
 }

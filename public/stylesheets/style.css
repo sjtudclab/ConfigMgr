@@ -1,5 +1,6 @@
 html, body {
 	height:100%;
+
 }
 
 body {
@@ -50,7 +51,9 @@ label.radio {
 	background-repeat:no-repeat;
 	background-position: center center;	
 }
+#navbar {
 
+}
 #body-container, #left-nav {
 	height: 100%;
 }
@@ -65,8 +68,15 @@ label.radio {
 #left-nav a {
 	width: 100%;
 }
+#left-nav .second-level {
+    display: none;
+}
 #copyright {
 	position: absolute;
 	bottom:0px;
 	left:0px;
+}
+#right-content {
+	height:100%;
+	overflow: scroll;
 }
