@@ -27,3 +27,26 @@ exports.createEntity = function(req, res) {
         });
     });
 };
+
+exports.createProperty = function(req, res) {
+    var payload = {};
+    payload.name = req.body.name;
+    payload.type = req.body.type;
+    payload.length = req.body.length;
+    payload.isPrimary = req.body.isPrimary;
+    payload.allowNull = req.body.allowNull;
+    payload.autoInc = req.body.autoInc;
+    payload.comment = req.body.comment;
+    payload.entityId = req.body.entityId;
+    payload.defaultVal = req.body.defaultVal;
+    payload._rangeTable = req.body._rangeTable;
+    console.log(payload);
+    return metadataService.createProperty(payload).then(function(id) {
+        console.log('--success inserte property');
+        res.send({
+            message: '成功创建',
+            status: 'success',
+            redirect: '/meta/newEntity'
+        });
+    });
+};

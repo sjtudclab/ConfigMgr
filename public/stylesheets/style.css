@@ -60,7 +60,7 @@ label.radio {
 
 #left-nav {	
 	padding:0;
-	background-color: #34495e;
+	background-color: rgb(238,238,238);
 	text-align: center;
 
 	position: relative;
@@ -69,7 +69,7 @@ label.radio {
 	width: 100%;
 }
 #left-nav .second-level {
-    display: none;
+    /*display: none;*/
 }
 #copyright {
 	position: absolute;
@@ -79,4 +79,8 @@ label.radio {
 #right-content {
 	height:100%;
 	overflow: scroll;
+}
+
+.select {
+    min-width: 120px;
 }

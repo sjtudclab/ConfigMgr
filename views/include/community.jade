@@ -1,0 +1,76 @@
+.container
+    button#btn-new-entity.btn.btn-default.btn-lg 新建社区
+        .glyphicon.glyphicon-plus
+
+    #entity-list.panel.panel-default.row
+        each entity in entities
+            div.col-md-3.entity-item
+                h4= entity.name
+                div= entity.description
+
+
+    <!-- Modal-->
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document', style='width:1000px')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4#myModalLabel.modal-title 新建社区
+                .modal-body
+                    form.form-horizontal
+                        .form-group
+                            label.col-md-3.control-label(for='entity-name') 社区名
+                            .col-md-9
+                                input#entity-name.form-control(placeholder='社区名')
+                        .form-group
+                            label.col-md-3.control-label(for='table_name') 数据库名
+                            .col-md-9
+                                input#table-name.form-control(placeholder='数据库名') 
+                        .form-group
+                            label.col-md-3.control-label(for='description') 描述
+                            .col-md-9
+                                textarea#table-desc.form-control(placeholder='详细描述', rows=3)
+                        .form-group
+                            table.table
+                                thead
+                                    tr.row
+                                        th 属性名
+                                        th 类型
+                                        th 长度
+                                        th 主键
+                                        th 为空
+                                        th 自增长
+                                        th 评论
+                                        th 默认值
+                                        th 范围
+                                tbody#properties
+                                    tr.row.hidden
+                                        th
+                                            input.form-control(name='propertyName',type='text')
+                                        th
+                                            select.form-control.select.select-primary.select-block.mbl(name='propertyType')
+                                                option(value='INT') INT
+                                                option(value='VARCHAR') VARCHAR
+                                                option(value='ENUM') ENUM
+                                        th
+                                            input.form-control(name='propertyLength', type='number', min='1', value='11',maxlength='4', size='4')
+                                        th 
+                                            input.custom-checkbox(name='isPrimary',type='checkbox', data-toggle='checkbox')
+                                        th 
+                                            input.custom-checkbox(name='allowNull',type='checkbox', data-toggle='checkbox')
+                                        th 
+                                            input.custom-checkbox(name='autoInc',type='checkbox', data-toggle='checkbox')
+                                        th 
+                                            input.form-control(type='text')
+                                        th 
+                                            input.form-control(type='text')
+                                        th 
+                                            select.form-control.select.select-primary.select-block.mbl
+                                                option(value='none') 无
+                                                option(value='communityRange') 社区范围
+
+                .modal-footer
+                    button#btn-add-property.btn.btn-success.pull-left(type='button') 添加属性
+                    button.btn.btn-default(type='button', data-dismiss='modal') Close
+                    button#btn-submit-new-entity.btn.btn-primary(type='button') Submit
