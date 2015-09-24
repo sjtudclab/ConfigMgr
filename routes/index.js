@@ -3,6 +3,7 @@ var util = require('util');
 var router = express.Router();
 var sqlHelper = require('../service/sqlHelper');
 var dao = require('../service/dao');
+var metadataController = require('../controllers/metadataController');
 
 var metadata = require('./metadata');
 
@@ -18,16 +19,7 @@ var metadata = require('./metadata');
         // }
     // });
     /* GET home page. */
-router.get('/', function(req, res, next) {
-    console.log('[visiting homepage----------------]');
-    var user = req.cookies.user;
-    res.render('index',
-        {
-            title: '社区基础数据管理系统',
-            user: user
-        }
-    );
-});
+router.get('/', metadataController.index);
 
 // router.get('/new', function(req, res, next) {
 //     var user = req.cookies.user;

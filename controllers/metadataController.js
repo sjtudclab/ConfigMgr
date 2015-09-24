@@ -1,3 +1,4 @@
+var Promise = require('bluebird');
 var dao = require('../service/dao');
 var metadataService = require('../service/metadataService');
 exports.getEntities = function(req, res, next) {
@@ -49,4 +50,31 @@ exports.createProperty = function(req, res) {
             redirect: '/meta/newEntity'
         });
     });
+};
+
+exports.index = function(req, res) {
+    var community = Promise.pending();
+    var communityId = req.query.id;
+    metadataService.getCommunityById(communityId).then(function(res) {
+        if (res && res.length > 0) {
+            community.resolve(res);
+        } else {
+            community.reject(res);
+        }
+    });
+    function resolveFun() {
+        res.redirect('/meta/newEntity');
+    }
+
+    function rejectFun() {
+        metadataService.getAllCommunities().then(function(communities) {
+            console.log('---success get all communities---');
+            res.render('index',{
+                title: '社区基础数据管理系统',
+                communities: communities
+            });
+        });
+    }
+
+    community.promise.then(resolveFun, rejectFun);
 };

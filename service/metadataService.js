@@ -21,3 +21,11 @@ exports.createProperty = function(payload) {
     return metadata.createProperty(name, type, length, isPrimary, allowNull,
      autoInc, comment, entityId, defaultVal , _rangeTable);
 };
+
+exports.getAllCommunities = function() {
+    return metadata.getAllCommunities();
+};
+
+exports.getCommunityById = function(id) {
+    return metadata.getCommunityById(id);
+}

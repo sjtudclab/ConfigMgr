@@ -70,3 +70,13 @@ exports.createProperty = function(name, type, length, isPrimary, allowNull, auto
         '\')'
         ));
 };
+
+exports.getAllCommunities = function() {
+    return Promise.resolve(knex.select('*').from(tableEntity)
+        .where('table_name','community'));
+};
+
+exports.getCommunityById = function(id) {
+    return Promise.resolve(knex.select('*').from(tableEntity).where('id',id));
+};
+

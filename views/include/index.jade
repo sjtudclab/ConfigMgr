@@ -1,0 +1,12 @@
+.container
+    #community-list
+        each val in communities.length ? communities : []
+            +blockCommunity(val)
+
+mixin blockCommunity(community)
+    a.panel.panel-default.col-md-3(href='/?id=' + community.id)
+        .panel-heading= community.name
+            .hidden.community-id= community.id
+        .panel-body= community.description
+
+    
