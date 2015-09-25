@@ -1,6 +1,14 @@
 var metadata = require('../models/metadata');
-exports.createEntity = function(name, tableName, description) {
-    return metadata.createEntity(name, tableName, description);
+exports.createEntity = function(name, tableName, description, categoty) {
+    return metadata.createEntity(name, tableName, description, categoty);
+};
+
+exports.updateEntity = function(id, name, tableName, description, categoty) {
+    return metadata.updateEntity(id, name, tableName, description, categoty);
+};
+
+exports.removeEntity = function(id) {
+    return metadata.removeEntity(id);
 };
 
 exports.createProperty = function(payload) {
@@ -28,4 +36,16 @@ exports.getAllCommunities = function() {
 
 exports.getCommunityById = function(id) {
     return metadata.getCommunityById(id);
-}
+};
+
+exports.getEntities = function(categoryId) {
+    return metadata.getEntities(categoryId);
+};
+
+exports.getPropertiesByEntityId = function(entityId) {
+    return metadata.getPropertiesByEntityId(entityId);
+};
+
+exports.removeProperty = function(propertyId) {
+    return metadata.removeProperty(propertyId);
+};

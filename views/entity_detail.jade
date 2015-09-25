@@ -1,0 +1,78 @@
+extends layout
+
+block rightContent
+    button#btn-add-entity.btn.btn-primary.btn-lg.pull-right 新增实体
+    include ./include/entity.jade
+
+    #modal-new-entity.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4#myModalLabel.modal-title 新增实体
+                .modal-body
+                    form.form-horizontal
+                        .form-group
+                            label.col-md-3.control-label(for='entity-name') 实体名
+                            .col-md-9
+                                input#entity-name.form-control(placeholder='实体名')
+                        .form-group
+                            label.col-md-3.control-label(for='entity-category') 实体类别
+                            .col-md-9
+                                select#entity-category.form-control
+                                    option(value='1') 社区定义 
+                                    option(value='2') 邻里社交
+                                    option(value='3') 公共服务
+                                    option(value='4') 便民服务
+                                    option(value='5') 支付信息
+                                    option(value='6') 身体管理
+                        .form-group
+                            label.col-md-3.control-label(for='table_name') 数据库名
+                            .col-md-9
+                                input#table-name.form-control(placeholder='数据库名') 
+                        .form-group
+                            label.col-md-3.control-label(for='description') 描述
+                            .col-md-9
+                                textarea#table-desc.form-control(placeholder='详细描述', rows=3)
+                .modal-footer
+                    button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                    button#btn-submit-add-entity.btn.btn-primary(type='button') 保存
+    #modal-update-entity.modal.fade(tabindex='-1', role='dialog', aria-labelledby='updateModalLabel')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4#updateModalLabel.modal-title 修改实体
+                .modal-body
+                    form.form-horizontal
+                        .form-group.hidden
+                            span#entity-id
+                        .form-group
+                            label.col-md-3.control-label(for='entity-name') 实体名
+                            .col-md-9
+                                input#entity-name.form-control(placeholder='实体名')
+                        .form-group
+                            label.col-md-3.control-label(for='entity-category') 实体类别
+                            .col-md-9
+                                select#entity-category.form-control
+                                    option(value='1') 社区定义 
+                                    option(value='2') 邻里社交
+                                    option(value='3') 公共服务
+                                    option(value='4') 便民服务
+                                    option(value='5') 支付信息
+                                    option(value='6') 身体管理
+                        .form-group
+                            label.col-md-3.control-label(for='table_name') 数据库名
+                            .col-md-9
+                                input#table-name.form-control(placeholder='数据库名') 
+                        .form-group
+                            label.col-md-3.control-label(for='description') 描述
+                            .col-md-9
+                                textarea#table-desc.form-control(placeholder='详细描述', rows=3)
+                .modal-footer
+                    button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                    button#btn-submit-modify-entity.btn.btn-primary(type='button') 保存
+block js
+    script(src='/javascripts/entity_detail.js')

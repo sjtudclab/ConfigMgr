@@ -10,6 +10,8 @@ var knex = require('knex')({
         database: config.get('meta_database')
     }
 });
+var entityTable = config.get('table_entity');
+var propertyTable = config.get('table_property');
 
 exports.createNewCommunity = function(host, username, password, port, db,
                                     name, provinceCityArea, address) {
@@ -91,7 +93,3 @@ exports.getCommunities = function() {
     return ret.promise;
 };
 
-exports.getEntities = function() {
-    var entityTable = config.get('table_entity');
-    return knex.select('*').from(entityTable);
-};

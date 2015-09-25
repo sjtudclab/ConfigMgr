@@ -1,0 +1,88 @@
+.container
+    h2= subtitle
+    each entity in entities
+        .panel.entity-panel
+            span.h3= entity.name
+                a.modify-entity(entity=entity.id).fa.fa-pencil
+                    span.hidden= entity.name
+                    span.hidden= entity.description
+                    span.hidden= entity.table_name
+                    span.hidden= entity.category
+                    span.hidden= entity.id
+                a.remove-entity(entity=entity.id).fa.fa-close
+                    span.hidden= entity.id
+                a.add-new-property(entity=entity.id).fa.fa-plus
+            table.table
+                thead
+                    tr.row
+                        th 属性名
+                        th 类型
+                        th 长度
+                        th 主键
+                        th 为空
+                        th 自增长
+                        th 评论
+                        th 默认值
+                        th 修改
+                        th 删除
+                tbody#properties
+                    tr.row-template.row.hidden
+                        th
+                            input.form-control(name='propertyName',type='text')
+                        th
+                            select.form-control.select.select-primary.select-block.mbl(name='propertyType')
+                                option(value='INT') INT
+                                option(value='VARCHAR') VARCHAR
+                                option(value='ENUM') ENUM
+                        th
+                            input.form-control(name='propertyLength', type='number', min='1', maxlength='4', size='4')
+                        th 
+                            input(name='isPrimary',type='checkbox')
+                        th 
+                            input(name='allowNull',type='checkbox')
+                        th 
+                            input(name='autoInc',type='checkbox')
+                        th 
+                            input.form-control(type='text')
+                        th 
+                            input.form-control(type='text')
+                        th 
+                            a.fa.fa-pencil
+                        th 
+                            a.fa.fa-close
+                    each property in entity.properties
+                        tr.row(property=property.id)
+                            th
+                                input.form-control(name='propertyName',type='text', value=property.name, disabled)
+                            th
+                                select.form-control.select.select-primary.select-block.mbl(name='propertyType', value=property.type, disabled)
+                                    option(value='INT') INT
+                                    option(value='VARCHAR') VARCHAR
+                                    option(value='ENUM') ENUM
+                            th
+                                input.form-control(name='propertyLength', type='number', min='1', value=property.length,maxlength='4', size='4', disabled)
+                            th 
+                                input(name='isPrimary',type='checkbox',checked=property.is_primary==0?false:true, disabled)
+                            th 
+                                input(name='allowNull',type='checkbox',checked=property.allow_null==0?false:true, disabled)
+                            th 
+                                input(name='autoInc',type='checkbox',checked=property.auto_increment==0?false:true, disabled)
+                            th 
+                                input.form-control(type='text',value=property.comment, disabled)
+                            th 
+                                input.form-control(type='text',value=property.default, disabled)
+                            th 
+                                a.fa.fa-pencil
+                            th 
+                                a.btn-remove-property.fa.fa-close        
+        //- button#btn-new-entity.btn.btn-default.btn-lg 新建社区
+    //-     .glyphicon.glyphicon-plus
+
+    //- #entity-list.panel.panel-default.row
+    //-     each entity in entities
+    //-         div.col-md-3.entity-item
+    //-             h4= entity.name
+    //-             div= entity.description
+
+
+
