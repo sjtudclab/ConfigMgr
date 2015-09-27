@@ -18,6 +18,12 @@
         // All other browsers
         else { window.location.href = url; }
     }
+
+    $.fn.toggleDisabled = function() {
+        return this.each(function() {
+            this.disabled = !this.disabled;
+        });
+    };
     //配置数据库radio click
     $('#default-db').on('click', function() {
         $('#form-custom-db').slideUp();

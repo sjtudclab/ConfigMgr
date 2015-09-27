@@ -130,5 +130,39 @@
             return;
         }
     });
+
+    $('.add-new-property').on('click', function(event) {
+        var panel = $(event.target).closest('.panel');
+        var rowTemplate = $('<tr class="row"><th><input name="propertyName" type="text" class="form-control"></th><th><select name="propertyType" class="form-control select select-primary select-block mbl"><option value="INT">INT</option><option value="VARCHAR">VARCHAR</option><option value="ENUM">ENUM</option></select></th><th><input name="propertyLength" type="number" min="1" maxlength="4" size="4" class="form-control"></th><th> <input name="isPrimary" type="checkbox"></th><th> <input name="allowNull" type="checkbox"></th><th> <input name="autoInc" type="checkbox"></th><th> <input type="text" class="form-control"></th><th> <input type="text" class="form-control"></th><th> <a class="btn-edit-property fa fa-pencil"></a></th><th> <a class="fa fa-close"></a></th></tr>');
+        var properties = $(panel.find('#properties'));
+        properties.append(rowTemplate);
+        bindEditPropertyClickEvent();
+        console.log(properties);
+    });
+
+    function bindEditPropertyClickEvent() {
+        $('.btn-edit-property').on('click', function(event) {
+            var editBtn = $(event.target);
+            var row = $(editBtn.closest('.row'));
+
+            if ((editBtn).hasClass('fa-floppy-o')) {
+                // do something to update the attribute
+                var propertyId = row.attr('property');
+                if (!propertyId) {
+                    // create Property and update propertyId after success created
+                } else {
+                    // update
+                }
+            }
+
+            editBtn.toggleClass('fa-pencil');
+            editBtn.toggleClass('fa-floppy-o');
+
+            row.find('th select, th input').toggleDisabled();
+            console.log('clicked');
+        });
+    };
+
+    bindEditPropertyClickEvent();
 })(jQuery);
 
