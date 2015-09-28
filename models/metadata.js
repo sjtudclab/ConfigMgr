@@ -34,17 +34,17 @@ exports.removeEntity = function(id) {
 
 exports.createProperty = function(name, type, length, isPrimary, allowNull, autoInc, comment, entityId, defaultVal, _rangeTable) {
     console.log(knex.raw('insert into `meta_property` (`_range_table`, `allow_null`, `auto_increment`, `comment`, `default`, `is_primary`, `length`, `meta_entity_id`, `name`, `type`) values ' +
-        '(' + _rangeTable +
-            ',' + allowNull +
-            ',' + autoInc +
-            ',' + comment +
-            ',' + defaultVal +
-            ',' + isPrimary +
-            ',' + length +
-            ',' + entityId +
-            ',' + name +
-            ',' + type +
-        ')').toSQL());
+        '(\'' + _rangeTable +
+            '\',\'' + allowNull +
+            '\',\'' + autoInc +
+            '\',\'' + comment +
+            '\',\'' + defaultVal +
+            '\',\'' + isPrimary +
+            '\',\'' + length +
+            '\',\'' + entityId +
+            '\',\'' + name +
+            '\',\'' + type +
+        '\')').toSQL());
     return Promise.resolve(knex.raw('insert into `meta_property` (`_range_table`, `allow_null`, `auto_increment`, `comment`, `default`, `is_primary`, `length`, `meta_entity_id`, `name`, `type`) values ' +
         '(\'' + _rangeTable +
             '\',\'' + allowNull +
@@ -60,6 +60,18 @@ exports.createProperty = function(name, type, length, isPrimary, allowNull, auto
         ));
 };
 
+exports.updateProperty = function(id, name, type, length, isPrimary, allowNull, autoInc, comment, entityId, defaultVal, _rangeTable) {
+    return Promise.resolve(knex(tableProperty).where('id',id).update({
+        name: name,
+        type: type,
+        length: length,
+        is_primary: isPrimary,
+        allow_null: allowNull,
+        auto_increment: autoInc,
+        comment: comment,
+        'default': defaultVal
+    }));
+};
 exports.getEntities = function(categoryId) {
     return knex.select('*').from(tableEntity).where('category',categoryId);
 };

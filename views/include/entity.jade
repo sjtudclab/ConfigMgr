@@ -1,7 +1,7 @@
 .container
     h2= subtitle
     each entity in entities
-        .panel.entity-panel
+        .panel.entity-panel(entity=entity.id)
             span.h3= entity.name
                 a.modify-entity(entity=entity.id).fa.fa-pencil
                     span.hidden= entity.name
@@ -43,9 +43,9 @@
                         th 
                             input(name='autoInc',type='checkbox')
                         th 
-                            input.form-control(type='text')
+                            input.form-control(name='propertyComment',type='text')
                         th 
-                            input.form-control(type='text')
+                            input.form-control(name='propertyDefault',type='text')
                         th 
                             a.btn-edit-property.fa.fa-pencil
                         th 
@@ -55,10 +55,10 @@
                             th
                                 input.form-control(name='propertyName',type='text', value=property.name, disabled)
                             th
-                                select.form-control.select.select-primary.select-block.mbl(name='propertyType', value=property.type, disabled)
-                                    option(value='INT') INT
-                                    option(value='VARCHAR') VARCHAR
-                                    option(value='ENUM') ENUM
+                                select.form-control.select.select-primary.select-block.mbl(name='propertyType', disabled)
+                                    option(value='INT' selected=(property.type == 'INT')) INT
+                                    option(value='VARCHAR' selected=(property.type == 'VARCHAR')) VARCHAR
+                                    option(value='ENUM' selected=(property.type == 'ENUM')) ENUM
                             th
                                 input.form-control(name='propertyLength', type='number', min='1', value=property.length,maxlength='4', size='4', disabled)
                             th 
@@ -68,9 +68,9 @@
                             th 
                                 input(name='autoInc',type='checkbox',checked=property.auto_increment==0?false:true, disabled)
                             th 
-                                input.form-control(type='text',value=property.comment, disabled)
+                                input.form-control(name='propertyComment',type='text',value=property.comment, disabled)
                             th 
-                                input.form-control(type='text',value=property.default, disabled)
+                                input.form-control(name='propertyDefault',type='text',value=property.default, disabled)
                             th 
                                 a.btn-edit-property.fa.fa-pencil
                             th 

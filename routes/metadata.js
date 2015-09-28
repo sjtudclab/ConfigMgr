@@ -16,5 +16,7 @@ router.post('/removeEntity', metadataController.removeEntity);
 
 router.post('/createProperty', metadataController.createProperty);
 
+router.post('/updateProperty', metadataController.updateProperty);
+
 router.post('/removeProperty', metadataController.removeProperty);
 module.exports = router;

@@ -14,8 +14,8 @@
             template.name = row.find('[name="propertyName"]').val();
             template.type = row.find('select[name="propertyType"]').find(':selected').text();
             template.length = row.find('[name="propertyLength"]').val();
-            template.isPrimary = row.find('[name="propertyLength"]').val();
-            template.allowNull = row.find('[name="allowNull"]').is('checked');
+            template.isPrimary = row.find('[name="isPrimary"]').is(':checked');
+            template.allowNull = row.find('[name="allowNull"]').is(':checked');
             properties.push(template);
         }
         console.log(properties);
@@ -133,7 +133,7 @@
 
     $('.add-new-property').on('click', function(event) {
         var panel = $(event.target).closest('.panel');
-        var rowTemplate = $('<tr class="row"><th><input name="propertyName" type="text" class="form-control"></th><th><select name="propertyType" class="form-control select select-primary select-block mbl"><option value="INT">INT</option><option value="VARCHAR">VARCHAR</option><option value="ENUM">ENUM</option></select></th><th><input name="propertyLength" type="number" min="1" maxlength="4" size="4" class="form-control"></th><th> <input name="isPrimary" type="checkbox"></th><th> <input name="allowNull" type="checkbox"></th><th> <input name="autoInc" type="checkbox"></th><th> <input type="text" class="form-control"></th><th> <input type="text" class="form-control"></th><th> <a class="btn-edit-property fa fa-pencil"></a></th><th> <a class="fa fa-close"></a></th></tr>');
+        var rowTemplate = $('<tr class="row"><th><input name="propertyName" type="text" class="form-control"></th><th><select name="propertyType" class="form-control select select-primary select-block mbl"><option value="INT">INT</option><option value="VARCHAR">VARCHAR</option><option value="ENUM">ENUM</option></select></th><th><input name="propertyLength" type="number" min="1" maxlength="4" size="4" class="form-control"></th><th> <input name="isPrimary" type="checkbox"></th><th> <input name="allowNull" type="checkbox"></th><th> <input name="autoInc" type="checkbox"></th><th> <input name="propertyComment" type="text" class="form-control"></th><th> <input name="propertyDefault" type="text" class="form-control"></th><th> <a class="btn-edit-property fa fa-floppy-o"></a></th><th> <a class="fa fa-close"></a></th></tr>');
         var properties = $(panel.find('#properties'));
         properties.append(rowTemplate);
         bindEditPropertyClickEvent();
@@ -141,6 +141,7 @@
     });
 
     function bindEditPropertyClickEvent() {
+        $('.btn-edit-property').off('click');
         $('.btn-edit-property').on('click', function(event) {
             var editBtn = $(event.target);
             var row = $(editBtn.closest('.row'));
@@ -148,10 +149,66 @@
             if ((editBtn).hasClass('fa-floppy-o')) {
                 // do something to update the attribute
                 var propertyId = row.attr('property');
+                var propertyName = row.find('[name="propertyName"]').val();
+                var propertyType = row.find('[name="propertyType"]').val();
+                var propertyLength = row.find('[name="propertyLength"]').val();
+                var isPrimary = row.find('[name="isPrimary"]').is(':checked');
+                var allowNull = row.find('[name="allowNull"]').is(':checked');
+                var autoInc = row.find('[name="autoInc"]').is(':checked');
+                var propertyComment = row.find('[name="propertyComment"]').val();
+                var propertyDefault = row.find('[name="propertyDefault"]').val();
+
+                var entityId = row.closest('.entity-panel').attr('entity');
+
+                console.log(propertyId);
+                console.log(propertyName);
+                console.log(propertyType);
+                console.log(propertyLength);
+                console.log(isPrimary);
+                console.log(allowNull);
+                console.log(autoInc);
+                console.log(propertyComment);
+                console.log(propertyDefault);
                 if (!propertyId) {
                     // create Property and update propertyId after success created
+                    $.post('/meta/createProperty', {
+                        entityId: entityId,
+                        id: propertyId,
+                        name: propertyName,
+                        type: propertyType,
+                        length: propertyLength,
+                        isPrimary: isPrimary,
+                        allowNull: allowNull,
+                        autoInc: autoInc,
+                        comment: propertyComment,
+                        defaultVal: propertyDefault
+                    }, function(data) {
+                        console.log(data);
+                        if (data.status != 'success') {
+                            alert('创建不成功，请重试');
+                        } else {
+                            row.attr('property', data.propertyId);
+                        }
+                    });
                 } else {
                     // update
+                    $.post('/meta/updateProperty', {
+                        id: propertyId,
+                        name: propertyName,
+                        type: propertyType,
+                        length: propertyLength,
+                        isPrimary: isPrimary,
+                        allowNull: allowNull,
+                        autoInc: autoInc,
+                        comment: propertyComment,
+                        defaultVal: propertyDefault
+                    }, function(data) {
+                        console.log(data);
+
+                        if (data.status != 'success') {
+                            alert('更新不成功，请重试');
+                        }
+                    });
                 }
             }
 

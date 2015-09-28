@@ -120,12 +120,37 @@ exports.createProperty = function(req, res) {
     payload.defaultVal = req.body.defaultVal;
     payload._rangeTable = req.body._rangeTable;
     console.log(payload);
-    return metadataService.createProperty(payload).then(function(id) {
+    return metadataService.createProperty(payload).then(function(obj) {
         console.log('--success inserte property');
+        console.log(obj[0].insertId);
         res.send({
             message: '成功创建',
             status: 'success',
+            propertyId: obj[0].insertId,
             redirect: '/meta/newEntity'
+        });
+    });
+};
+
+exports.updateProperty = function(req, res) {
+    var payload = {};
+    payload.id = req.body.id;
+    payload.name = req.body.name;
+    payload.type = req.body.type;
+    payload.length = req.body.length;
+    payload.isPrimary = req.body.isPrimary;
+    payload.allowNull = req.body.allowNull;
+    payload.autoInc = req.body.autoInc;
+    payload.comment = req.body.comment;
+    payload.entityId = req.body.entityId;
+    payload.defaultVal = req.body.defaultVal;
+    payload._rangeTable = req.body._rangeTable;
+    console.log(payload);
+    return metadataService.updateProperty(payload).then(function(id) {
+        console.log('--success inserte property');
+        res.send({
+            message: '成功更新属性',
+            status: 'success'
         });
     });
 };
