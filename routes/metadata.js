@@ -7,6 +7,8 @@ router.get('/', metadataController.index);
 
 router.get('/entities/:id', metadataController.getEntities);
 
+router.get('/relationship', metadataController.getRelationship);
+
 /*API*/
 router.post('/createEntity', metadataController.createEntity);
 

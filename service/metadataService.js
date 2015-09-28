@@ -67,3 +67,7 @@ exports.getPropertiesByEntityId = function(entityId) {
 exports.removeProperty = function(propertyId) {
     return metadata.removeProperty(propertyId);
 };
+
+exports.getRelationships = function() {
+    return metadata.getRelationships();
+};

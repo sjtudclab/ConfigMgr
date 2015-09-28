@@ -1,0 +1,23 @@
+.container 
+    h2 关联关系列表
+    button.btn.btn-primary.btn-lg 添加新关系
+    table#table-relationship.table
+        thead
+            tr.row
+                th 名称
+                th 表名
+                th 列名
+                th 外键表名
+                th 外键列名
+        tbody
+            each rl in relationships
+                tr.row(id=rl.id)
+                    td= rl.name
+                    td= rl.table_name
+                        span= rl.table_id
+                    td= rl.property_name
+                        span= rl.property_id
+                    td= rl.fk_table
+                        span= rl.fk_table_id
+                    td= rl.fk_property
+                        span= rl.fk_property_id

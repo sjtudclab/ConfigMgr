@@ -11,6 +11,7 @@ var knex = require('knex')({
 });
 var tableEntity = config.get('table_entity');
 var tableProperty = config.get('table_property');
+var tableRelationship = config.get('table_relationship');
 exports.createEntity = function(name, tableName, description, category) {
     return Promise.resolve(knex.insert({name: name,
                                         'table_name': tableName,
@@ -92,4 +93,8 @@ exports.getCommunityById = function(id) {
 
 exports.removeProperty = function(id) {
     return Promise.resolve(knex(tableProperty).where('id',id).del());
+};
+
+exports.getRelationships = function() {
+    return Promise.resolve(knex(tableRelationship).select('*'));
 };

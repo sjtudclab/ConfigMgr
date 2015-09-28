@@ -8,7 +8,8 @@
          "meta_database": "MetaManager",
          "fixeddb": "server",
          "table_entity": "meta_entity",
-         "table_property": "meta_property"
+         "table_property": "meta_property",
+         "table_relationship": "meta_relationship"
     },
     "initial_sql": "./models/community_server_2015-08-30.sql"
 }

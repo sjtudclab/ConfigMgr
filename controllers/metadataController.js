@@ -60,6 +60,14 @@ exports.index = function(req, res) {
     community.promise.then(resolveFun, rejectFun);
 };
 
+exports.getRelationship = function(req, res) {
+    metadataService.getRelationships().then(function(rls) {
+        res.render('manage_relationship', {
+            relationships: rls
+        });
+    });
+};
+/*API*/
 exports.createEntity = function(req, res) {
     var name = req.body.name;
     var tableName = req.body.tableName;
