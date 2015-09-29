@@ -29,6 +29,30 @@ exports.getEntities = function(req, res, next) {
         });
     });
 };
+
+exports.getEntityListForDisplay = function(req, res) {
+    metadataService.getEntities().then(function(results) {
+        console.log(results);
+        res.send({
+            message: '成功获取属性列表',
+            status: 'success',
+            entities: results
+        });
+    });
+};
+
+exports.getPropertiesByEntityId = function(req, res) {
+    var entityId = req.body.entityId;
+    console.log(entityId);
+    metadataService.getPropertiesByEntityId(entityId).then(function(results) {
+        console.log(results);
+        res.send({
+            message: '成功获取属性列表',
+            status: 'success',
+            properties: results
+        });
+    });
+};
 exports.index = function(req, res) {
     var community = Promise.pending();
     var communityId = req.query.id;
@@ -61,9 +85,17 @@ exports.index = function(req, res) {
 };
 
 exports.getRelationship = function(req, res) {
-    metadataService.getRelationships().then(function(rls) {
+    var relationshipPromise = metadataService.getRelationships();
+    var entityListPromise = metadataService.getEntities();
+
+    Promise.all([relationshipPromise, entityListPromise]).then(function(arr) {
+        console.log('rls------------');
+        console.log(arr[0]);
+        console.log('els------------');
+        console.log(arr[1]);
         res.render('manage_relationship', {
-            relationships: rls
+            relationships: arr[0],
+            entities: arr[1]
         });
     });
 };
@@ -168,6 +200,22 @@ exports.removeProperty = function(req, res) {
     return metadataService.removeProperty(propertyId).then(function() {
         res.send({
             message: '成功删除属性',
+            status: 'success'
+        });
+    });
+};
+
+exports.createRelationship = function(req, res) {
+    var name = req.body.name;
+    var tableId = req.body.tableId;
+    var propertyId = req.body.propertyId;
+    var fkTableId = req.body.fkTableId;
+    var fkPropertyId = req.body.fkPropertyId;
+
+    return metadataService.createRelationship(name, tableId, propertyId, fkTableId, fkPropertyId).then(function(result) {
+        console.log(result);
+        res.send({
+            message: '成功创建关系',
             status: 'success'
         });
     });

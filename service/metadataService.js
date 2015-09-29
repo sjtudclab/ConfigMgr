@@ -71,3 +71,7 @@ exports.removeProperty = function(propertyId) {
 exports.getRelationships = function() {
     return metadata.getRelationships();
 };
+
+exports.createRelationship = function(name, tableId, propertyId, fkTableId, fkPropertyId) {
+    return metadata.createRelationship(name, tableId, propertyId, fkTableId, fkPropertyId);
+};

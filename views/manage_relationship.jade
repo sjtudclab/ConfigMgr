@@ -2,3 +2,71 @@ extends layout
 
 block rightContent
     include ./include/relationship.jade
+    #modal-new-relationship.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4#myModalLabel.modal-title 新增关系
+                .modal-body
+                    form.form-horizontal
+                        .form-group
+                            label.col-md-2.control-label(for='relationship-name') 关系说明
+                            .col-md-10
+                                input#relationship-name.form-control(placeholder='例如社区与小区的关系')
+                        .form-group
+                            label.col-md-2.control-label(for='table-name') 表名
+                            .col-md-4
+                                select#table-name.form-control
+                                        option(disabled selected) 请选择
+                                        each entity in entities
+                                            option(value=entity.id)= entity.name
+                            label.col-md-2.control-label(for='property-name') 列名
+                            .col-md-4
+                                select#property-name.form-control
+                        .form-group
+                            label.col-md-2.control-label(for='fk-table-name') 外键表名
+                            .col-md-4
+                                select#fk-table-name.form-control
+                                        option(disabled selected) 请选择
+                                        each entity in entities
+                                            option(value=entity.id)= entity.name
+                            label.col-md-2.control-label(for='fk-property-name') 外键列名
+                            .col-md-4
+                                select#fk-property-name.form-control
+                .modal-footer
+                    button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                    button#btn-submit-add-relationship.btn.btn-primary(type='button') 保存
+    #modal-update-relationship.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4#myModalLabel.modal-title 修改关系
+                .modal-body
+                    form.form-horizontal
+                        .form-group
+                            label.col-md-2.control-label(for='relationship-name') 关系说明
+                            .col-md-10
+                                input#relationship-name.form-control(placeholder='例如社区与小区的关系')
+                        .form-group
+                            label.col-md-2.control-label(for='table-name') 表名
+                            .col-md-4
+                                select#table-name.form-control
+                            label.col-md-2.control-label(for='property-name') 列名
+                            .col-md-4
+                                select#property-name.form-control
+                        .form-group
+                            label.col-md-2.control-label(for='fk-table-name') 外键表名
+                            .col-md-4
+                                select#fk-table-name.form-control
+                            label.col-md-2.control-label(for='fk-property-name') 外键列名
+                            .col-md-4
+                                select#fk-property-name.form-control
+                .modal-footer
+                    button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                    button#btn-submit-update-relationship.btn.btn-primary(type='button') 保存
+block js
+    script(src='/javascripts/relationship.js')

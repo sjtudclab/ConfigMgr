@@ -1,7 +1,7 @@
 .container 
     h2 关联关系列表
-    button.btn.btn-primary.btn-lg 添加新关系
-    table#table-relationship.table
+    button#btn-add-relationship.btn.btn-primary.btn-lg 添加新关系
+    table#table-relationship.table.table-hover
         thead
             tr.row
                 th 名称
@@ -17,7 +17,7 @@
                         span= rl.table_id
                     td= rl.property_name
                         span= rl.property_id
-                    td= rl.fk_table
+                    td= rl.fk_table_name
                         span= rl.fk_table_id
-                    td= rl.fk_property
+                    td= rl.fk_property_name
                         span= rl.fk_property_id

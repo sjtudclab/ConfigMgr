@@ -21,4 +21,11 @@ router.post('/createProperty', metadataController.createProperty);
 router.post('/updateProperty', metadataController.updateProperty);
 
 router.post('/removeProperty', metadataController.removeProperty);
+
+router.post('/getEntities', metadataController.getEntityListForDisplay);
+
+router.post('/getPropertiesByEntityId', metadataController.getPropertiesByEntityId);
+
+router.post('/createRelationship', metadataController.createRelationship);
+
 module.exports = router;

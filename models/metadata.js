@@ -74,7 +74,11 @@ exports.updateProperty = function(id, name, type, length, isPrimary, allowNull, 
     }));
 };
 exports.getEntities = function(categoryId) {
-    return knex.select('*').from(tableEntity).where('category',categoryId);
+    if (categoryId) {
+        return knex.select('*').from(tableEntity).where('category',categoryId);
+    } else {
+        return knex.select('*').from(tableEntity);
+    }
 };
 
 exports.getPropertiesByEntityId = function(entityId) {
@@ -96,5 +100,24 @@ exports.removeProperty = function(id) {
 };
 
 exports.getRelationships = function() {
-    return Promise.resolve(knex(tableRelationship).select('*'));
+    return Promise.resolve(knex.select(knex.raw('a.id, a.name, d.name as table_name, a.table_id, ' +
+        'b.name as property_name, a.property_id, e.name as fk_table_name, a.fk_table_id, ' +
+        'c.name as fk_property_name, a.fk_property_id'))
+        .from(knex.raw(tableRelationship + ' a'))
+        .leftJoin(knex.raw(tableProperty + ' as b'), 'b.id', 'a.property_id')
+        .leftJoin(knex.raw(tableProperty + ' as c'), 'c.id', 'a.fk_property_id')
+        .leftJoin(knex.raw(tableEntity + ' as d'), 'd.id', 'a.table_id')
+        .leftJoin(knex.raw(tableEntity + ' as e'), 'e.id', 'a.fk_table_id')
+        );
 };
+
+exports.createRelationship = function(name, tableId, propertyId, fkTableId, fkPropertyId) {
+    return Promise.resolve(knex(tableRelationship).insert({
+        name: name,
+        table_id: tableId,
+        property_id: propertyId,
+        fk_table_id: fkTableId,
+        fk_property_id: fkPropertyId
+    }));
+};
+
