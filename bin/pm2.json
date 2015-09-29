@@ -1,0 +1,23 @@
+{
+    "apps": [
+        {
+            "name": "ConfigMgr",
+            "script": "./bin/ConfigMgr.js",
+            "args": ["--development"],
+            "instances": 1,
+            "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+            "watch": "../",
+            "ignoreWatch": [
+                "node_modules",
+                ".pm2",
+                ".local",
+                "README.md",
+                ".gitignore"
+            ],
+            "out_file": "./.pm2/logs/out.log",
+            "error_file": "./.pm2/logs/error.log",
+            "pid_file": "./.pm2/pids/child.pid",
+            "exec_mode": "fork_mode"
+        }
+    ]
+}
